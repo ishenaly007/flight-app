@@ -63,7 +63,7 @@ public class JdbcRunner {
         String sql = """
                 SELECT * FROM flights.ticket;
                 """;
-        try (var connection = ConnectionManager.open();
+        try (var connection = ConnectionManager.get();
              var statement = connection.createStatement()) {
             statement.setFetchSize(2);//чтобы память не перегружать, грузит по 2 элем
             statement.setMaxRows(2);//максимально 2 элемента наверно, 2 строки
@@ -87,7 +87,7 @@ public class JdbcRunner {
                 SELECT * FROM flights.ticket t
                 where flight_id = ?;
                 """;
-        try (var connection = ConnectionManager.open();
+        try (var connection = ConnectionManager.get();
              var statement = connection.prepareStatement(sql2)) {
             statement.setInt(1, id);
             var result = statement.executeQuery();
@@ -107,7 +107,7 @@ public class JdbcRunner {
                 WHERE f.departure_date between ? and ?
                 ;
                 """;
-        try (var connection = ConnectionManager.open();
+        try (var connection = ConnectionManager.get();
              var statement = connection.prepareStatement(sql2)) {
             statement.setTimestamp(1, Timestamp.valueOf(start));
             statement.setTimestamp(2, Timestamp.valueOf(end));
@@ -123,7 +123,7 @@ public class JdbcRunner {
     }
 
     public static void checkMetaData() {
-        try (var connection = ConnectionManager.open()) {
+        try (var connection = ConnectionManager.get()) {
             var metaData = connection.getMetaData();
             var catalogs = metaData.getCatalogs();
             while (catalogs.next())
