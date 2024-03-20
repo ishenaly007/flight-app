@@ -12,6 +12,53 @@ import java.util.List;
 public class JdbcRunner {
     public static void main(String[] args) throws SQLException {
 
+        /*System.out.println("Welcome to server...");
+        System.out.println("Enter your name..");
+        Scanner scan = new Scanner(System.in);
+        String username = scan.nextLine();
+        System.out.println("There are your tables..");
+        System.out.println("1.aircraft " + "| 2.airport " + "| 3.flight " + "| 4.seat " + "| 5.ticket ");
+        boolean tables = true;
+        while (tables) {*/
+
+           /* System.out.println("Choose table(1,2,3..");
+            System.out.println("Exit(0..");
+            Scanner scan2 = new Scanner(System.in);
+            int tableNum = scan.nextInt();
+            String table = "";
+            switch (tableNum) {
+                case 1:
+                    table = "aircraft";
+                    break;
+                case 2:
+                    table = "airport";
+                    break;
+                case 3:
+                    table = "flight";
+                    break;
+                case 4:
+                    table = "seat";
+                    break;
+                case 5:
+                    table = "ticket";
+                    break;
+                case 0:
+                    tables = false;
+                    break;
+            }
+            String sqlTable = """
+                    SELECT * FROM flights.%s
+                    """.formatted(table);
+            try (var connection = ConnectionManager.open();
+                 var statement = connection.prepareStatement(sqlTable)) {
+                var result = statement.executeQuery();
+                while (result.next()) {
+                    System.out.println(result.getRow());
+                }
+            }
+        }*/
+        /*DriverManager.getConnection(url, user, passw);*/
+
         //обычно надо закрывать connection поэтому просто закинем в try/catch
         String sql = """
                 SELECT * FROM flights.ticket;
@@ -75,8 +122,8 @@ public class JdbcRunner {
         }
     }
 
-    public static void checkMetaData(){
-        try (var connection = ConnectionManager.open()){
+    public static void checkMetaData() {
+        try (var connection = ConnectionManager.open()) {
             var metaData = connection.getMetaData();
             var catalogs = metaData.getCatalogs();
             while (catalogs.next())
