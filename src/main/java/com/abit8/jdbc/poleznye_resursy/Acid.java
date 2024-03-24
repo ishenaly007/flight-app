@@ -1,4 +1,4 @@
-package com.abit8.jdbc.acid;
+package com.abit8.jdbc.poleznye_resursy;
 
 public class Acid {
     /*

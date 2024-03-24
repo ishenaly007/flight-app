@@ -1,10 +1,10 @@
 package com.abit8.jdbc;
 
+import com.abit8.jdbc.dao.TicketDao;
 import com.abit8.jdbc.utils.ConnectionManager;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +60,7 @@ public class JdbcRunner {
         /*DriverManager.getConnection(url, user, passw);*/
 
         //обычно надо закрывать connection поэтому просто закинем в try/catch
-        String sql = """
+       /* String sql = """
                 SELECT * FROM flights.ticket;
                 """;
         try (var connection = ConnectionManager.get();
@@ -79,7 +79,12 @@ public class JdbcRunner {
         System.out.println(getUserByFlightId(6));
         System.out.println(getFlightsBetween(LocalDate.of(2022, 1, 1).atStartOfDay(),
                 LocalDate.of(2023, 1, 1).atStartOfDay()));
-        checkMetaData();
+        checkMetaData();*/
+
+        var ticketDao = TicketDao.getInstance();
+
+        System.out.println(ticketDao.findAll());
+        System.out.println(ticketDao.findById(34).get());
     }
 
     public static List<String> getUserByFlightId(int id) {
