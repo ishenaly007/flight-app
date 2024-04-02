@@ -1,6 +1,9 @@
 package com.abit8.jdbc;
 
+import com.abit8.jdbc.dao.FlightDao;
 import com.abit8.jdbc.dao.TicketDao;
+import com.abit8.jdbc.dto.TicketFilter;
+import com.abit8.jdbc.entity.Ticket;
 import com.abit8.jdbc.utils.ConnectionManager;
 
 import java.sql.SQLException;
@@ -82,9 +85,11 @@ public class JdbcRunner {
         checkMetaData();*/
 
         var ticketDao = TicketDao.getInstance();
+        var flightDao = FlightDao.getInstance();
+        System.out.println(flightDao.findAll());
+        var filter = new TicketFilter(null, 1L, 5, 0);
+        System.out.println(ticketDao.findById(7L));
 
-        System.out.println(ticketDao.findAll());
-        System.out.println(ticketDao.findById(34).get());
     }
 
     public static List<String> getUserByFlightId(int id) {
