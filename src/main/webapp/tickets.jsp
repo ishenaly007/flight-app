@@ -14,6 +14,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@include file="logout.jsp"%>
 <body>
 <h1>Купленные билеты:</h1>
 <ul>

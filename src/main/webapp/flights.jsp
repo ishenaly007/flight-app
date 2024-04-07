@@ -12,6 +12,7 @@
 <head>
     <title>Title</title>
 </head>
+<%@include file="logout.jsp"%>
 <body>
 <h1>Список перелетов:</h1>
 <ul>
